@@ -11,13 +11,21 @@ const Facilities = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const loadFacilities = async () => {
+  const [allCities, setAllCities] = useState(["Sve"]);
+
+  const loadFacilities = async (search = searchTerm, city = selectedCity) => {
     try {
       setLoading(true);
       setError("");
 
-      const data = await getAllFitnessObjects();
+      const data = await getAllFitnessObjects(search, city);
       setFacilities(Array.isArray(data) ? data : []);
+
+      // If we haven't loaded all cities yet, do a one-time fetch or extract from first load
+      if (allCities.length === 1 && Array.isArray(data)) {
+        const uniqueCities = [...new Set(data.map((item) => item.city).filter(Boolean))];
+        setAllCities(["Sve", ...uniqueCities]);
+      }
     } catch (err) {
       setError(err.message || "Greška pri učitavanju fitnes centara.");
     } finally {
@@ -25,30 +33,23 @@ const Facilities = () => {
     }
   };
 
+  // Handle initial load and city changes immediately
   useEffect(() => {
-    loadFacilities();
-  }, []);
+    loadFacilities(searchTerm, selectedCity);
+  }, [selectedCity]);
 
-  const cities = useMemo(() => {
-    const uniqueCities = [
-      ...new Set(facilities.map((item) => item.city).filter(Boolean)),
-    ];
-    return ["Sve", ...uniqueCities];
-  }, [facilities]);
+  // Handle searchTerm changes with debounce, skipping the first run if searchTerm is empty
+  useEffect(() => {
+    if (searchTerm === "") return;
 
-  const filteredFacilities = useMemo(() => {
-    return facilities.filter((item) => {
-      const matchesSearch =
-        item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.address?.toLowerCase().includes(searchTerm.toLowerCase());
+    const delayDebounceFn = setTimeout(() => {
+      loadFacilities(searchTerm, selectedCity);
+    }, 500);
 
-      const matchesCity =
-        selectedCity === "Sve" || item.city === selectedCity;
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
 
-      return matchesSearch && matchesCity;
-    });
-  }, [facilities, searchTerm, selectedCity]);
+  const filteredFacilities = facilities; // Logic moved to backend
 
   return (
     <div className="facilities">
@@ -84,7 +85,7 @@ const Facilities = () => {
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
           >
-            {cities.map((city) => (
+            {allCities.map((city) => (
               <option key={city} value={city}>
                 {city}
               </option>

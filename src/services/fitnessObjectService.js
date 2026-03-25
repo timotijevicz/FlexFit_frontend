@@ -1,7 +1,13 @@
 import { apiFetch } from "./api";
 
-export const getAllFitnessObjects = async () => {
-  return await apiFetch("/api/FitnessObjects", {
+export const getAllFitnessObjects = async (searchTerm = "", city = "Sve") => {
+  const params = new URLSearchParams();
+  if (searchTerm) params.append("searchTerm", searchTerm);
+  if (city && city !== "Sve") params.append("city", city);
+
+  const queryString = params.toString() ? `?${params.toString()}` : "";
+  
+  return await apiFetch(`/api/FitnessObjects${queryString}`, {
     method: "GET",
   });
 };
