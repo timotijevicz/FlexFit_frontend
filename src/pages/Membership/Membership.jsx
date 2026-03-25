@@ -77,7 +77,7 @@ const Membership = () => {
     <div className="membership">
       <div className="membership-hero">
         <div>
-          <p className="membership-kicker">FlexFit Membership</p>
+          <p className="membership-kicker">FlexFit Članarina</p>
           <h1>Moja članarina</h1>
           <p className="membership-subtitle">
             Pregled tvoje digitalne kartice i statusa članarine.

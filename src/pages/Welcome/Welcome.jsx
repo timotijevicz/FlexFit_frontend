@@ -19,7 +19,7 @@ const Welcome = () => {
       <div className="welcome-bg-orb orb-two"></div>
 
       <div className="welcome-content">
-        <p className="welcome-kicker">FlexFit System</p>
+        <p className="welcome-kicker">FlexFit Sistem</p>
         <h1 className="logo">FlexFit</h1>
         <p className="tagline">Tvoja forma. Tvoja pravila.</p>
 

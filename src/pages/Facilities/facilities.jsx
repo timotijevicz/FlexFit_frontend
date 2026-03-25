@@ -54,7 +54,7 @@ const Facilities = () => {
     <div className="facilities">
       <div className="facilities-hero">
         <div>
-          <p className="facilities-kicker">FlexFit Locations</p>
+          <p className="facilities-kicker">FlexFit Objekti</p>
           <h1>Fitnes centri</h1>
           <p className="facilities-subtitle">
             Pregled svih dostupnih FlexFit objekata, sa pretragom po nazivu,

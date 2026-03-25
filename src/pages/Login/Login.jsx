@@ -101,7 +101,7 @@ const Login = () => {
       <div className="login-bg-orb orb-two"></div>
 
       <div className="login-box">
-        <p className="login-kicker">FlexFit Access</p>
+        <p className="login-kicker">FlexFit Prijava</p>
         <h2>Prijava</h2>
         <p className="login-subtitle">
           Prijavi se na svoj nalog i nastavi sa korišćenjem sistema.

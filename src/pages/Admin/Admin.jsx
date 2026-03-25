@@ -502,7 +502,7 @@ const Admin = () => {
     <div className="admin">
       <div className="admin-hero">
         <div>
-          <p className="admin-kicker">FlexFit Control Center</p>
+          <p className="admin-kicker">FlexFit Kontrol Centar</p>
           <h1>Admin panel</h1>
           <p className="admin-subtitle">
             Upravljaj objektima, zaposlenima i narednim funkcionalnostima iz

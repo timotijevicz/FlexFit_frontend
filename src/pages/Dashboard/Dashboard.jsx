@@ -86,7 +86,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard-hero">
         <div>
-          <p className="dashboard-kicker">FlexFit Overview</p>
+          <p className="dashboard-kicker">FlexFit Početna</p>
           <h1>Dobrodošao!</h1>
           <p className="dashboard-subtitle">
             Ovde možeš brzo da vidiš pregled sistema i da pristupiš glavnim

@@ -63,7 +63,7 @@ const Register = () => {
       <div className="register-bg-orb orb-two"></div>
 
       <div className="register-box">
-        <p className="register-kicker">FlexFit Access</p>
+        <p className="register-kicker">FlexFit Registracija</p>
         <h2>Registracija</h2>
         <p className="register-subtitle">
           Kreiraj nalog i pristupi svim FlexFit funkcionalnostima.

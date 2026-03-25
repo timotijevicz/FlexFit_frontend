@@ -207,7 +207,11 @@ const FacilityDetails = () => {
                           const available = slot.availableSpots !== undefined ? slot.availableSpots : maxCapacity;
                           const noSpots = available <= 0;
                           
-                          const userBooking = reservationsList[res.id]?.find(r => r.memberId === Number(userId) && new Date(r.startTime).getTime() === new Date(slot.startTime).getTime());
+                          const userBooking = reservationsList[res.id]?.find(r => 
+                            r.memberId === Number(userId) && 
+                            new Date(r.startTime).getTime() === new Date(slot.startTime).getTime() &&
+                            r.status !== 'Canceled'
+                          );
                           const userAlreadyBooked = !!userBooking;
 
                           return (
@@ -259,6 +263,7 @@ const FacilityDetails = () => {
                             const sTime = new Date(times.startTime);
                             const eTime = new Date(times.endTime);
                             try {
+                              setBookMessage("Zakazivanje u toku...");
                               await apiFetch("/api/Reservations/book", {
                                 method: "POST",
                                 body: JSON.stringify({ memberId: Number(userId), resourceId: res.id, startTime: sTime.toISOString(), endTime: eTime.toISOString() })
@@ -279,7 +284,6 @@ const FacilityDetails = () => {
 
                     </div>
                   )}
-
                 </div>
               </div>
             ))}
